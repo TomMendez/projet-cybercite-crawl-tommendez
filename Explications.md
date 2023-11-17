@@ -46,3 +46,10 @@ sudo docker-compose exec database mysql --password
 USE main;
 
 (Arret des conteneurs : sudo docker-compose down)
+
+Création de l'entityClass et des tables :
+symfony console make:entity
+symfony console make:migration
+
+[CHANGEMENT DE DB URL!]
+sudo symfony console make:migration
