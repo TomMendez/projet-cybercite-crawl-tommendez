@@ -51,5 +51,12 @@ Création de l'entityClass et des tables :
 symfony console make:entity
 symfony console make:migration
 
-[CHANGEMENT DE DB URL!]
+//// CHANGEMENT DE DB URL! ////
+
 sudo symfony console make:migration
+sudo symfony console doctrine:migrations:migrate
+
+[Exemple de requete :]
+sudo symfony console doctrine:query:sql 'SELECT * FROM crawl'
+
+symfony console make:controller CrawlController 
