@@ -37,32 +37,27 @@ class CrawlController extends AbstractController
         }
         # COPIE CODE GITHUB MODELE
 
-
+        # On crée un objet "Crawl" quit contient le résultat du crawl rélisé par l'API et utilise les setter générés par le framework pour affecter les valeurs
         $crawl = new Crawl();
         $crawl->setIdSite($siteId);
-        $datetime = \DateTime::createFromFormat(DateTimeInterface::ISO8601, $date); #TEMPORAIRE
+        $datetime = \DateTime::createFromFormat(DateTimeInterface::ISO8601, $date); # On change le string en type Date pour la BDD
         $crawl->setDate($datetime);
-        $rescrawl="{URLSite = {$rsltPositions[0]['url']}}"."<br>"."{Moteur = {$rsltPositions[0]['moteur']['name']}}"."<br>"."{Position = {$rsltPositions[0]['position']}}"."<br>";
-        # var_dump($rescrawl);
+        # On formate le résultat du crawl en page html simple
+        $rescrawl="<p>URLSite = {$rsltPositions[0]['url']}</p>"."\n"
+                            ."<p>Moteur = {$rsltPositions[0]['moteur']['name']}</p>"."\n"
+                            ."<p>Position = {$rsltPositions[0]['position']}</p>";
         $crawl->setResCrawl($rescrawl);
 
+        # On echo directement notre variable, le code sera interprété par le navigateur
+        echo("<h2>Résultat Crawl : </h2>" . $rescrawl);
+
+        # On utilise leframework pour enregistrer en base de données notre Crawl
         $entityManager->persist($crawl);
         $entityManager->flush();
+
+        # Pour ce projet, on ne modife pas la réponse par défaut du Controller qui sera rajoutée à la suite de notre echo dans le code html de la page
         return $this->render('crawl/index.html.twig', [
             'controller_name' => 'CrawlController',
         ]);
-    }
-
-    public function addCrawl(EntityManagerInterface $entityManager, int $idSite, \DateTimeInterface $date, string $resCrawl): apache_response
-    {
-      $crawl = new Crawl();
-      $crawl->setIdSite($idSite);
-      $crawl->setDate($date);
-      $crawl->setResCrawl($resCrawl);
-
-      $entityManager->persist($crawl);
-      $entityManager->flush();
-
-      return Response(); # Temporaire
     }
 }
