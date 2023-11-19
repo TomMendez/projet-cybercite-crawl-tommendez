@@ -10,27 +10,39 @@ Pré-requis : PHP 7.4 ou supérieur / composer
 
 Ensuite on peut accéder à la page Web Localhost (résultat de la commande "serve", probablement http://127.0.0.1:8000)
 
-Le crawl est déclenché lorsqu'on charge la page /crawl et le résultat est affiché directement sur la page.
+Le crawl est déclenché lorsqu'on charge la page et le résultat est affiché directement sur la page.
 
 On peut aussi accéder à la base de données depuis la console pour voir les Crawls stockés :
 sudo symfony console doctrine:query:sql 'SELECT * FROM crawl'
 
-TODO : faire de /crawl la page d'acceuil *********************************
-
 
 # Explication de la problématique et architecture du projet :
-TODO
+J'ai défini plusieurs tâches à remplir pour réaliser ce projet :
+- Réaliser le Crawl et trouver la position du site
+- Formater le Crawl en page HTML simple
+- Stocker les Crawl dans une base de donnés
+- Gestion de toutes les interfaces
+
+Dans la partie suivante, je décrit les solutions techniques à ces tâches.
 
 
 # Explications techniques et description du framework
-Pour réaliser ce projet, j'ai utilisé le framework Symfony (6.3.8) ainsi que l'ORM Doctrine (2.4) pour la gestionde BDD.
+Pour réaliser ce projet, j'ai utilisé le framework Symfony (6.3.8) ainsi que l'ORM Doctrine (2.4) pour la gestion de BDD.
+La base de données est une MySQL (5.7) qui a été générée et qui est gérée à l'aide de Doctrine (BDD dockerisée)
 
-La base de données est une MySQL (5.7) qui a été générée et qui est gérée à l'aide de Doctrine
+L'essentiel du code php que j'ai rédigé se troue dans le fichier "CrawlController.php".
+Sinon, le reste du code est généré à l'aide des commandes symfony.
+
+La réalisation du crawl se fait directement à l'aide de l'API et du git modèle (code getPositions.php), je ne vais donc pas détailler.
+
+La mise en forme se fera directement en écrivant du code php "basique" (concaténation des différentes balises et variables).
+
+C'est le framework qui va gérer l'interface serveur PHP/BDD et c'est à l'aide des méthodes de l'"entitymanager" que l'on va enregistrer le crawl en BDD.
 
 Voice un résumé qui représente les flux lors d'un crawl entre ces différents composants :
 
 1 : Chargement de la page /crawl
-2 : Requete vers l'API Datagarden (code getPositions.php du git modèle)
+2 : Requete vers l'API Datagarden
 3 : Mise en forme de la réponse Datagarden en page html simple
 4 : Stockage dans la base de données du Crawl par l'ORM
 5 : Affichage sur la page web du résultat du Crawl
@@ -53,7 +65,7 @@ La mise en place des tests unitaires n'a pas été faite.
 J'ai consicence que c'est une partie essentielle du dévelopement que je n'ai pas traitée juste par manque de temps.
 
 - Axe Design :
-Ce projet n'a pas du tout vocation du à être "beau". (REFORMULER)
+Je n'ai pas traité la partie "Design" du projet, il n'y a pas de code css et j'ai simplement affiché le résultat du Crawl sur la page par défaut.
 
 - Axe Git :
 Le git de ce projet est basique. Pas de branches, pas de CI/CD, des commits nommés mais sans description.

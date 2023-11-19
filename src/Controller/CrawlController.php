@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CrawlController extends AbstractController
 {
-    #[Route('/crawl', name: 'app_crawl')]
+    #[Route('/', name: 'app_crawl')]
     public function index(EntityManagerInterface $entityManager): Response
     {
         # COPIE CODE GITHUB MODELE
