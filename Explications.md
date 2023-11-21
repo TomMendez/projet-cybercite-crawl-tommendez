@@ -30,7 +30,7 @@ Dans la partie suivante, je décrit les solutions techniques à ces tâches.
 Pour réaliser ce projet, j'ai utilisé le framework Symfony (6.3.8) ainsi que l'ORM Doctrine (2.4) pour la gestion de BDD.
 La base de données est une MySQL (5.7) qui a été générée et qui est gérée à l'aide de Doctrine (BDD dockerisée)
 
-L'essentiel du code php que j'ai rédigé se troue dans le fichier "src/Controller/CrawlController.php".
+L'essentiel du code php que j'ai rédigé se troue dans le fichier "CrawlController.php".
 Sinon, le reste du code est généré à l'aide des commandes symfony.
 
 La réalisation du crawl se fait directement à l'aide de l'API et du git modèle (code getPositions.php), je ne vais donc pas détailler.
