@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Crawl;
 use App\Entity\Client;
 use Doctrine\ORM\EntityManagerInterface;
-include 'Client.php';
+include 'src/Entity/Client.php';
 use DateTimeInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
